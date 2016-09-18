@@ -1,14 +1,14 @@
 'atom-text-editor.vim-mode':
   'escape': 'vim-mode:reset-normal-mode'
-  'ctrl-c': 'vim-mode:reset-normal-mode'
+  #'ctrl-c': 'vim-mode:reset-normal-mode'
   'ctrl-[': 'vim-mode:reset-normal-mode'
 
 'atom-text-editor.vim-mode:not(.normal-mode)':
   'escape': 'vim-mode:activate-normal-mode'
   'ctrl-[': 'vim-mode:activate-normal-mode'
 
-'.platform-darwin atom-text-editor.vim-mode:not(.normal-mode)':
-  'ctrl-c': 'vim-mode:activate-normal-mode'
+#'.platform-darwin atom-text-editor.vim-mode:not(.normal-mode)':
+  #'ctrl-c': 'vim-mode:activate-normal-mode'
 
 'atom-text-editor.vim-mode.insert-mode':
   'ctrl-w': 'editor:delete-to-beginning-of-word'
@@ -219,7 +219,7 @@
   'R': 'vim-mode:activate-replace-mode'
   'v': 'vim-mode:activate-characterwise-visual-mode'
   'V': 'vim-mode:activate-linewise-visual-mode'
-  'ctrl-v': 'vim-mode:activate-blockwise-visual-mode'
+  #'ctrl-v': 'vim-mode:activate-blockwise-visual-mode'
 
   'u': 'vim-mode:undo'
   'ctrl-r': 'core:redo'
@@ -236,8 +236,8 @@
   'ctrl-]': 'symbols-view:go-to-declaration'
   'ctrl-t': 'symbols-view:return-from-declaration'
 
-  'ctrl-a': 'vim-mode:increase'
-  'ctrl-x': 'vim-mode:decrease'
+  #'ctrl-a': 'vim-mode:increase'
+  #'ctrl-x': 'vim-mode:decrease'
 
   '" a': 'vim-mode:register-prefix'
   '" b': 'vim-mode:register-prefix'
@@ -295,6 +295,18 @@
   '" +': 'vim-mode:register-prefix'
   '" %': 'vim-mode:register-prefix'
   '" _': 'vim-mode:register-prefix'
+  '" -': 'vim-mode:register-prefix'
+  '" "': 'vim-mode:register-prefix'
+  '" 0': 'vim-mode:register-prefix'
+  '" 1': 'vim-mode:register-prefix'
+  '" 2': 'vim-mode:register-prefix'
+  '" 3': 'vim-mode:register-prefix'
+  '" 4': 'vim-mode:register-prefix'
+  '" 5': 'vim-mode:register-prefix'
+  '" 6': 'vim-mode:register-prefix'
+  '" 7': 'vim-mode:register-prefix'
+  '" 8': 'vim-mode:register-prefix'
+  '" 9': 'vim-mode:register-prefix'
 
 'atom-text-editor.vim-mode.operator-pending-mode, atom-text-editor.vim-mode.visual-mode':
   'i w': 'vim-mode:select-inside-word'
@@ -341,7 +353,7 @@
 
   'v':      'vim-mode:activate-characterwise-visual-mode'
   'V':      'vim-mode:activate-linewise-visual-mode'
-  'ctrl-v': 'vim-mode:activate-blockwise-visual-mode'
+  #'ctrl-v': 'vim-mode:activate-blockwise-visual-mode'
 
   '" a': 'vim-mode:register-prefix'
   '" b': 'vim-mode:register-prefix'
