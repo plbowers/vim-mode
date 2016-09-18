@@ -33,14 +33,8 @@ module.exports =
     @disposables.add new Disposable =>
       @vimStates.forEach (vimState) -> vimState.destroy()
 
-    #@installPackageDependencies()
-
   deactivate: ->
     @disposables.dispose()
-
-  installPackageDependencies: ->
-    require('atom-package-dependencies').install ->
-      atom.packages.activatePackage('clipboard-plus')
 
   getGlobalState: ->
     @globalVimState
