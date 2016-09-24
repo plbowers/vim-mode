@@ -305,6 +305,18 @@ class VimState
       text = ''
       type = Utils.copyType(text)
       {text, type}
+    else if name is '-'
+      {text, type} = @globalVimState.registers.smallRegister ? ''
+      {text, type}
+    else if name is '0'
+      {text, type} = @globalVimState.registers.yankRegister ? ''
+      #type = Utils.copyType(text)
+      {text, type}
+    else if name in ['1','2','3','4','5','6','7','8','9']
+      idx = parseInt(name) - 1 # numberedRegisters is 0-based
+      {text, type} = @globalVimState.registers.numberedRegisters[idx] ? ''
+      #type = Utils.copyType(text)
+      {text, type}
     else
       @globalVimState.registers[name.toLowerCase()]
 
@@ -324,18 +336,33 @@ class VimState
   #
   # name  - The name of the register to fetch.
   # value - The value to set the register to.
+  # fromDelete - Indicates whether the change causing the
+  #         setRegister is from a change/delete operation
+  #         which goes in the 1..9 numbered registers or a
+  #         yank operation which goes in the 0 numbered register.
   #
   # Returns nothing.
-  setRegister: (name, value) ->
+  setRegister: (name, value, fromDelete=true) ->
     if name is '"'
       name = settings.defaultRegister()
+    if name is settings.defaultRegister() # even if '*'
+      if value.type == 'linewise' # only linewise changes go into numbered registers
+        regs = @globalVimState.registers
+        if fromDelete # deletes/changes go in numbered register 1..9
+          regs.numberedRegisters.unshift(value)
+          if regs.numberedRegisters.length > 10
+            regs.numberedRegisters.pop()
+        else # yanked text goes in numbered register 0
+          regs.yankRegister = value
+      else # less than a line - put it in the "- register
+        regs.smallRegister = value
     if name in ['*', '+']
       atom.clipboard.write(value.text)
     else if name is '_'
       # Blackhole register, nothing to do
     else if /^[A-Z]$/.test(name)
       @appendRegister(name.toLowerCase(), value)
-    else
+    else # assume a-z register
       @globalVimState.registers[name] = value
 
 
